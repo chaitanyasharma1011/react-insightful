@@ -34,6 +34,7 @@ export const useInsight = () => {
       position: e ? getMousePosition(e) : undefined,
       metadata,
       componentName: metadata?.componentName,
+      scrollData: metadata?.scrollData,
       context: globalContext,
     };
     if (devMode) defaultEventLogger(event);

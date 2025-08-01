@@ -10,12 +10,9 @@ export type InsightEventType =
 
 //format for recording 'scroll' event's data
 export interface ScrollData {
-  scrollTop: number;
-  scrollLeft: number;
-  scrollHeight: number;
-  scrollWidth: number;
+  scrollPercentage: number;
+  elementHeight: number;
   clientHeight: number;
-  clientWidth: number;
 }
 
 export interface ElementDetails {
