@@ -8,11 +8,16 @@ export type InsightEventType =
   | "keydown"
   | "custom";
 
+export interface RectSpecs {
+  width: number;
+  height: number;
+}
+
 //format for recording 'scroll' event's data
 export interface ScrollData {
-  scrollPercentage: number;
-  elementHeight: number;
-  clientHeight: number;
+  scrollPercentage: RectSpecs;
+  element: RectSpecs;
+  client: RectSpecs;
 }
 
 export interface ElementDetails {
