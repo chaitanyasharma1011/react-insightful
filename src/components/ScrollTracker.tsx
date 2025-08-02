@@ -21,18 +21,27 @@ export default function ScrollTracker({
         entries.forEach((entry) => {
           if (!entry.isIntersecting) return;
           const { boundingClientRect, intersectionRect } = entry;
+          //scrolled height so far
           const visibleHeight = intersectionRect.height;
-          const visibleWidth = intersectionRect.width;
           const totalHeight = boundingClientRect.height;
+          const pastTop = Math.min(0, boundingClientRect.top);
+          const scrolledHeight = visibleHeight - pastTop;
+
+          //scrolled width so far
+          const visibleWidth = intersectionRect.width;
           const totalWidth = boundingClientRect.width;
-          maxScreenDepth.current = Math.max(
-            maxScreenDepth.current,
-            visibleHeight / totalHeight
-          );
-          maxScreenSlide.current = Math.max(
-            maxScreenSlide.current,
-            visibleWidth / totalWidth
-          );
+          const pastLeft = Math.min(0, boundingClientRect.left);
+          const scrolledWidth = visibleWidth - pastLeft;
+          if (totalHeight)
+            maxScreenDepth.current = Math.max(
+              maxScreenDepth.current,
+              scrolledHeight / totalHeight
+            );
+          if (totalWidth)
+            maxScreenSlide.current = Math.max(
+              maxScreenSlide.current,
+              scrolledWidth / totalWidth
+            );
         });
       },
       {
