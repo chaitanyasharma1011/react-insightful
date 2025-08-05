@@ -109,5 +109,9 @@ export default function ScrollTracker({
     // };
   }, [componentName]);
 
-  return <div ref={enclosingRef}>{children}</div>;
+  return (
+    <div ref={enclosingRef} style={{ width: "inherit", height: "inherit" }}>
+      {children}
+    </div>
+  );
 }

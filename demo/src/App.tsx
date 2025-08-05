@@ -1,70 +1,160 @@
-import React, { useState } from "react";
+import { useState } from "react";
 import {
   InsightProvider,
   ScrollTracker,
   useInsight,
-  withInsight,
+  // withInsight,
 } from "../../src";
 
 import "./App.css";
 
-// Original hook-based example
-const EventLogger = () => {
+const ClickExample = () => {
   const { track } = useInsight();
 
-  const handleClick = (e: React.MouseEvent<HTMLButtonElement>) => {
-    track("click", e.currentTarget, { purpose: "Demo Button Click (Hook)" }, e);
-  };
-
   return (
-    <div>
-      <h2>Click Tracking with useInsight</h2>
-      <button onClick={handleClick}>Click Me!</button>
+    <div className="flex space-x-4 items-center">
+      <h2>Click</h2>
+      <button
+        onClick={(e) =>
+          track("click", e.currentTarget, { label: "Click Button" }, e)
+        }
+      >
+        Click Me
+      </button>
     </div>
   );
 };
 
-// ScrollTracker example
-const ScrollableSection = () => {
-  const [mount, setMount] = useState<boolean>(true);
-  return (
-    <>
-      <button onClick={() => setMount((prev) => !prev)}>Unmount</button>
-      {mount ? (
-        <ScrollTracker componentName="LongSection">
-          <div
-            style={{ height: "150vh", padding: "1rem", background: "#e6f7ff" }}
-          >
-            <h2 style={{ color: "black" }}>Scroll Down</h2>
-            <p style={{ color: "black" }}>
-              This section logs scroll depth when unmounted.
-            </p>
-          </div>
-        </ScrollTracker>
-      ) : null}
-    </>
-  );
-};
-
-// New: withInsight HOC example
-const RawHOCComponent = ({ track }: any) => {
-  const handleClick = (e: React.MouseEvent<HTMLButtonElement>) => {
-    track("click", e.currentTarget, { purpose: "HOC Button Click" }, e);
-  };
+const HoverExample = () => {
+  const { track } = useInsight();
 
   return (
-    <div>
-      <h2>Click Tracking with withInsight HOC</h2>
-      <button onClick={handleClick}>Click Me Too!</button>
+    <div className="flex space-x-4 items-center">
+      <h2>Hover</h2>
+      <div
+        onMouseEnter={(e) =>
+          track(
+            "hover",
+            e.currentTarget,
+            { componentName: "Hover Component", label: "Hovered Div" },
+            e
+          )
+        }
+        style={{
+          padding: "1rem",
+          background: "#dff0d8",
+          display: "inline-block",
+          color: "black",
+        }}
+      >
+        Hover Over Me
+      </div>
     </div>
   );
 };
 
-const HOCEndpoint = withInsight(RawHOCComponent);
+const FocusExample = () => {
+  const { track } = useInsight();
+
+  return (
+    <div className="flex space-x-4 items-center">
+      <h2>Focus</h2>
+      <input
+        type="text"
+        className="border p-2"
+        placeholder="Focus on me"
+        onFocus={(e) =>
+          track("focus", e.currentTarget, { label: "Input Focused" })
+        }
+      />
+    </div>
+  );
+};
+
+const InputExample = () => {
+  const { track } = useInsight();
+
+  return (
+    <div className="flex space-x-4 items-center">
+      <h2>Input</h2>
+      <input
+        type="text"
+        className="border p-2"
+        placeholder="Type something"
+        onInput={(e) =>
+          track("input", e.currentTarget, { value: e.currentTarget.value })
+        }
+      />
+    </div>
+  );
+};
+
+const ScrollExample = () => {
+  const [mount, setMount] = useState(true);
+
+  return (
+    <div className="flex flex-col space-y-4 items-start">
+      <h2>
+        Scroll (Event will be triggered when the bellow component unmounts)
+      </h2>
+      <button onClick={() => setMount((prev) => !prev)}>
+        {mount ? "Unmount ScrollTracker" : "Mount ScrollTracker"}
+      </button>
+      {mount && (
+        <div className="w-full">
+          <ScrollTracker componentName="LongSection">
+            <div
+              style={{
+                height: "150vh",
+                background: "#f5f5f5",
+                padding: "1rem",
+              }}
+            >
+              <p>Scroll me!</p>
+            </div>
+          </ScrollTracker>
+        </div>
+      )}
+    </div>
+  );
+};
+
+const KeydownExample = () => {
+  const { track } = useInsight();
+
+  return (
+    <div className="flex space-x-4 items-center">
+      <h2>Keydown</h2>
+      <input
+        type="text"
+        className="border p-2"
+        placeholder="Press a key"
+        onKeyDown={(e) => track("keydown", e.currentTarget, { key: e.key })}
+      />
+    </div>
+  );
+};
+
+const CustomEventExample = () => {
+  const { track } = useInsight();
+
+  return (
+    <div className="flex space-x-4 items-center">
+      <h2>Custom Event</h2>
+      <button
+        onClick={() =>
+          track("custom", document.body, { message: "Custom event fired" })
+        }
+      >
+        Fire Custom Event
+      </button>
+    </div>
+  );
+};
 
 const App = () => {
   const logger = (event: any) => {
-    // console.log("[Insight Event]", event);
+    console.log("[Insight Event]", event);
   };
 
   return (
@@ -75,11 +165,15 @@ const App = () => {
       route="/"
       devMode={true}
     >
-      <div className="App">
-        <h1>React Insightful Demo</h1>
-        <EventLogger />
-        <HOCEndpoint />
-        <ScrollableSection />
+      <div className="space-y-10">
+        <h1>React Insightful - All Event Types Demo</h1>
+        <ClickExample />
+        <HoverExample />
+        <FocusExample />
+        <InputExample />
+        <ScrollExample />
+        <KeydownExample />
+        <CustomEventExample />
       </div>
     </InsightProvider>
   );
