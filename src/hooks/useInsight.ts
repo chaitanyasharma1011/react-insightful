@@ -26,13 +26,14 @@ export const useInsight = () => {
     metadata: Record<string, any> = {},
     e?: MouseEvent | React.MouseEvent
   ) => {
+    const { componentName, scrollData, ...restMetadata } = metadata ?? {};
     const event: InsightEvent = {
       id: v4(),
       type,
       timeStamp: Date.now(),
       element: getElementDetails(element),
       position: e ? getMousePosition(e) : undefined,
-      metadata,
+      metadata: restMetadata,
       componentName: metadata?.componentName,
       scrollData: metadata?.scrollData,
       context: globalContext,
