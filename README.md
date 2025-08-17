@@ -1,5 +1,8 @@
 # React Insightful
 
+[![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
+[![npm version](https://img.shields.io/npm/v/react-insightful.svg)](https://www.npmjs.com/package/react-insightful)
+
 React Insightful is an open-source TypeScript library for tracking user interactions within React applications. It provides React components, hooks, and utilities to monitor user events such as scroll depth, clicks, and other interactions, enabling developers to gain actionable insights.
 
 ## Features
@@ -24,11 +27,11 @@ yarn add react-insightful
 
 ```tsx
 import React from "react";
-import { InsightProvider } from "react-insightful";
+import { InsightProvider, InsightEvent } from "react-insightful";
 
 function App() {
   return (
-    <InsightProvider logger={(event) => console.log(event)}>
+    <InsightProvider logger={(event: InsightEvent) => console.log(event)}>
       <MyPage />
     </InsightProvider>
   );
@@ -89,7 +92,7 @@ It wraps your app (or part of it) and provides consistent event logging with use
 
 **Props:**
 
-- `logger(required)`: `(event: Event) => void` — A callback invoked whenever an event is tracked. Receives a structured event object.
+- `logger(required)`: `(event: InsightEvent) => void` — A callback invoked whenever an event is tracked. Receives a structured event object.
 
 - `userId (Optional)`: `string` - The ID of the currently logged-in user. Useful for associating tracked events with a user. This then gets embedded to the event , and can be used inside the logger function you provided in the above prop.
 
@@ -104,10 +107,10 @@ It wraps your app (or part of it) and provides consistent event logging with use
 **Example:**
 
 ```tsx
-import { InsightProvider } from "react-insightful";
+import { InsightProvider, InsightEvent } from "react-insightful";
 
 export default function App() {
-  const logger = (event) => {
+  const logger = (event: InsightEvent) => {
     console.log("%cEvent Type:", event.type.toUpperCase());
     console.log(
       "%cComponent Name:",
@@ -162,7 +165,7 @@ Tracks maximum depth to which your current page (and not component,as of now) ha
 **Example:**
 
 ```tsx
-import { InsightProvider } from "react-insightful";
+import { InsightProvider, InsightEvent } from "react-insightful";
 
 const ScrollExample = () => {
   return (
@@ -186,7 +189,7 @@ const ScrollExample = () => {
 };
 
 export default function App() {
-  const logger = (event) => {
+  const logger = (event: InsightEvent) => {
     console.log("%cEvent Type:", event.type.toUpperCase());
     console.log(
       "%cComponent Name:",
@@ -393,7 +396,7 @@ Once a component is wrapped with `withInsight`, you can use it just like a norma
 
 ```tsx
 import React from "react";
-import InsightProvider from "react-insightful";
+import { InsightProvider } from "react-insightful";
 import TrackedButton from "./Button"; // wrapped withInsight(Button)
 
 function App() {

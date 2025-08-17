@@ -1,16 +1,41 @@
 {
   "name": "react-insightful",
-  "private": true,
-  "version": "0.0.0",
+  "version": "0.1.0",
+  "description": "Lightweight React library for user interaction analytics. Provides hooks and components to track clicks, scroll depth, and custom events with TypeScript support.",
+  "keywords": [
+    "react",
+    "react hooks",
+    "react analytics",
+    "user tracking",
+    "event tracking",
+    "scroll tracking",
+    "scroll depth",
+    "click tracking",
+    "insights",
+    "session tracking",
+    "frontend analytics",
+    "user behavior",
+    "interaction tracking",
+    "typescript",
+    "lightweight"
+  ],
+  "license": "MIT",
   "type": "module",
+  "main": "dist/index.cjs",
+  "module": "dist/index.js",
+  "types": "dist/types/index.d.ts",
+  "files": [
+    "dist/",
+    "README.md",
+    "LICENSE"
+  ],
   "scripts": {
     "dev": "vite",
-    "build": "tsc -b && vite build",
+    "build": "tsc -b && vite build && tsc -p tsconfig.build.json",
     "lint": "eslint .",
     "preview": "vite preview"
   },
   "dependencies": {
-    "prettier": "^3.6.2",
     "react": "^19.1.0",
     "react-dom": "^19.1.0",
     "uuid": "^11.1.0"
@@ -26,6 +51,7 @@
     "globals": "^16.3.0",
     "typescript": "~5.8.3",
     "typescript-eslint": "^8.35.1",
-    "vite": "^7.0.4"
+    "vite": "^7.0.4",
+    "prettier": "^3.6.2"
   }
 }
