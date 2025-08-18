@@ -4,7 +4,9 @@ import {
   ScrollTracker,
   useInsight,
   // withInsight,
-} from "../../src";
+} from "react-insightful";
+
+import type { InsightEvent } from "react-insightful";
 
 import "./App.css";
 
@@ -153,7 +155,7 @@ const CustomEventExample = () => {
 };
 
 const App = () => {
-  const logger = (event: any) => {
+  const logger = (event: InsightEvent) => {
     console.log("[Insight Event]", event);
   };
 
