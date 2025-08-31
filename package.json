@@ -1,6 +1,6 @@
 {
   "name": "react-insightful",
-  "version": "0.1.1",
+  "version": "0.1.2",
   "description": "Lightweight React library for user interaction analytics. Provides hooks and components to track clicks, scroll depth, and custom events with TypeScript support.",
   "keywords": [
     "react",
