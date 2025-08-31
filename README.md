@@ -13,6 +13,11 @@ React Insightful is an open-source TypeScript library for tracking user interact
 - 📝 Customizable event logging with metadata.
 - 🔌 Extendable architecture for additional trackers.
 
+## Example
+
+You can check out a sample usage of react-insightful in the [demo app code](https://github.com/chaitanyasharma1011/react-insightful/blob/main/demo/src/App.tsx) and its [deployed UI](https://react-insightful.vercel.app/).
+Since `devMode` is enabled in this example, and the `logger` function in the demo code also consoles the event, all tracked events will be logged twice in the console.
+
 ## Installation
 
 ```bash
@@ -482,6 +487,7 @@ npm run build
 ## Roadmap
 
 - [x] Add click tracker
+- [x] Add scroll tracker
 - [ ] Add time-on-page tracker
 - [ ] Add heatmap visualization
 - [ ] Integrate analytics dashboard
