@@ -6,6 +6,7 @@ export type InsightEventType =
   | "input"
   | "scroll"
   | "keydown"
+  | "time_on_page"
   | "custom";
 
 export interface RectSpecs {
