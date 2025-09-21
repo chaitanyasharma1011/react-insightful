@@ -156,7 +156,7 @@ const CustomEventExample = () => {
 
 const App = () => {
   const logger = (event: InsightEvent) => {
-    console.log("[Insight Event]", event);
+    console.log("[Insight Event] as recieved by your logger function", event);
   };
 
   return (
@@ -168,7 +168,15 @@ const App = () => {
       devMode={true}
     >
       <div className="space-y-10">
-        <h1>React Insightful - All Event Types Demo</h1>
+        <div className="space-y-4">
+          <h1>React Insightful - All Event Types Demo</h1>
+          <p>
+            Events will be logged in console <strong>twice</strong> as the
+            logger function itself logs the event and also due to the fact that
+            InsightProvider has <strong>devMode</strong> set to{" "}
+            <strong>true</strong>
+          </p>
+        </div>
         <ClickExample />
         <HoverExample />
         <FocusExample />

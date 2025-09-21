@@ -7,11 +7,11 @@ React Insightful is an open-source TypeScript library for tracking user interact
 
 ## Features
 
-- 📊 Track user interactions like scroll depth, clicks, and custom events.
-- 🛠 Easy integration via React hooks and HOCs.
-- ⚡ Minimal performance overhead.
-- 📝 Customizable event logging with metadata.
-- 🔌 Extendable architecture for additional trackers.
+- Track user interactions like scroll depth, clicks, and custom events.
+- Easy integration via React hooks and HOCs.
+- Minimal performance overhead.
+- Customizable event logging with metadata.
+- Extendable architecture for additional trackers.
 
 ## Example
 
@@ -409,7 +409,7 @@ function App() {
     <InsightProvider logger={(event) => console.log("Event logged:", event)}>
       <div>
         <h1>withInsight Example</h1>
-        <TrackedButton label="Click Me 🚀" />
+        <TrackedButton label="Click Me" />
       </div>
     </InsightProvider>
   );
